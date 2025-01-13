@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Navigation Menu</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding-top: 60px; /* To prevent content from hiding behind fixed nav */
+        }
+
+        /* Navigation styles */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        nav.scrolled {
+            background-color: #555; /* Change color on scroll */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff9800; /* Change color on hover */
+        }
+
+        /* Content styles */
+        section {
+            padding: 50px;
+            height: 100vh;
+        }
+
+        .section1 { background-color: #f4f4f4; }
+        .section2 { background-color: #ddd; }
+        .section3 { background-color: #bbb; }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li><a href="#section1">Home</a></li>
+            <li><a href="#section2">About</a></li>
+            <li><a href="#section3">Services</a></li>
+        </ul>
+    </nav>
+
+    <section id="section1" class="section1">Home Section</section>
+    <section id="section2" class="section2">About Section</section>
+    <section id="section3" class="section3">Services Section</section>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+
+        // Change navbar background on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Highlight menu items on hover (optional, already covered by CSS)
+        const menuLinks = document.querySelectorAll('nav a');
+        menuLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                link.style.fontWeight = 'bold';
+            });
+            link.addEventListener('mouseleave', () => {
+                link.style.fontWeight = 'normal';
+            });
+        });
+    </script>
+</body>
+</html>
